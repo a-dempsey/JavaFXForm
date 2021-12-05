@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private final TextField userField = new TextField();
+    private static final TextField userField = new TextField();
     private final TextField passwordField = new TextField();
     private final Text errorMessage = new Text();
 
@@ -48,11 +48,17 @@ public class Main extends Application {
         grid.add(box, 1, 4);
         grid.add(errorMessage, 1, 6);
 
-   // });
 
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public static boolean emailChecker(){
+        String username = userField.getText();
+        final String emailFormat = "^[[a-z][A-Z][0-9]-_+]*[[a-z][A-Z][0-9]-_]@([[a-z][A-Z][0-9]]+.)+[[a-z][A-Z][0-9]]+[[a-z][A-Z][0-9]]$";
+
+        return username.matches(emailFormat);
     }
 
 
