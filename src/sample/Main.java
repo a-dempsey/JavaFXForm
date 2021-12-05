@@ -61,10 +61,11 @@ public class Main extends Application {
 
     public boolean emailChecker(){
         String username = userField.getText();
-        final String emailFormat = "^[[a-z][A-Z][0-9]-_+]*[[a-z][A-Z][0-9]-_]@([[a-z][A-Z][0-9]]+.)+[[a-z][A-Z][0-9]]+[[a-z][A-Z][0-9]]$";
+        final String emailFormat = "^[[a-z][A-Z][0-9][._-]-_+]*[[a-z][A-Z][0-9]-_]@([[a-z][A-Z][0-9]]+.)+\\.[[a-z][A-Z][0-9]]+[[a-z][A-Z][0-9]]$";
 
         if (!username.matches(emailFormat)) {
             errorMessage.setText("Invalid email address");
+            userField.setText("");
             return false;
         } else {
             return true;
