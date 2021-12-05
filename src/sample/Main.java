@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private final TextField userField = new TextField();
     private final TextField passwordField = new TextField();
-    private final Text errorMessage = new Text();
+    private static final Text errorMessage = new Text();
 
     GridPane grid = new GridPane();
     Label email = new Label("Email:");
@@ -50,11 +50,11 @@ public class Main extends Application {
 
         createAccountButton.setOnAction(t -> {
             emailChecker();
-            if(emailChecker()){
+            passwordChecker();
+            if(emailChecker() & passwordChecker()){
               errorMessage.setText("You have successfully signed up!");
             }
         });
-
         stage.setScene(scene);
         stage.show();
     }
@@ -68,6 +68,19 @@ public class Main extends Application {
             userField.setText("");
             return false;
         } else {
+            return true;
+        }
+    }
+
+    public boolean passwordChecker(){
+        String password = passwordField.getText();
+
+        if(!password.matches("^(?=.*[[a-z][A-Z]])(?=.*[0-9])(?=.*[*^&@!-+=()]).{7,30}$")) {
+            errorMessage.setText("Password must: \n \t - Be at least 7 characters in length \n \t - Contain at least one number \n \t - Contain at least one special character \n");
+            passwordField.setText("");
+            return false;
+        }
+        else{
             return true;
         }
     }
