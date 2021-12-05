@@ -14,7 +14,9 @@ public class UnitTest extends Application{
 
     @org.junit.Test
     public void testEmailChecker(){
-        String email = "example@example.com";
-        assertTrue(email, Main.emailChecker());
+        String email1 = "example@example.com";
+        String email2 = "EXAMPLE";
+        assertTrue(email1, Main.emailChecker());
+        assertFalse(email2, Main.emailChecker());
 
     }}
